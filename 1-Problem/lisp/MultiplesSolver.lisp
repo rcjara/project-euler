@@ -1,0 +1,15 @@
+(defun multiples-solve (num)
+  (let ((num_list (loop for n from 1 below num 
+          collect n)))
+    (apply '+ (remove-if-not (lambda (x)
+                    (or (= 0 (mod x 3))
+                        (= 0 (mod x 5))))
+      num_list))))
+
+(defun mult-two-solve (num)
+  (let ((new-num (1- num)))
+    (cond ((= new-num 0) 0)
+          ((or (= 0 (mod new-num 3))
+               (= 0 (mod new-num 5)))
+             (+ (mult-two-solve new-num) new-num))
+          (t (mult-two-solve new-num)))))
